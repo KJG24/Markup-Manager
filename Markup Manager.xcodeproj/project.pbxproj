@@ -11,6 +11,8 @@
 		B9A7C8122943E10E009758B7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9A7C8112943E10E009758B7 /* ContentView.swift */; };
 		B9A7C8142943E110009758B7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B9A7C8132943E110009758B7 /* Assets.xcassets */; };
 		B9A7C8182943E110009758B7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B9A7C8172943E110009758B7 /* Preview Assets.xcassets */; };
+		B9A7C81F2943EBA0009758B7 /* ProjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9A7C81E2943EBA0009758B7 /* ProjectView.swift */; };
+		B9A7C8222943EE0A009758B7 /* CreateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9A7C8212943EE0A009758B7 /* CreateView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +22,8 @@
 		B9A7C8132943E110009758B7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B9A7C8152943E110009758B7 /* Markup_Manager.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Markup_Manager.entitlements; sourceTree = "<group>"; };
 		B9A7C8172943E110009758B7 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		B9A7C81E2943EBA0009758B7 /* ProjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectView.swift; sourceTree = "<group>"; };
+		B9A7C8212943EE0A009758B7 /* CreateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,7 +57,7 @@
 			isa = PBXGroup;
 			children = (
 				B9A7C80F2943E10E009758B7 /* Markup_ManagerApp.swift */,
-				B9A7C8112943E10E009758B7 /* ContentView.swift */,
+				B9A7C8202943EC14009758B7 /* Views */,
 				B9A7C8132943E110009758B7 /* Assets.xcassets */,
 				B9A7C8152943E110009758B7 /* Markup_Manager.entitlements */,
 				B9A7C8162943E110009758B7 /* Preview Content */,
@@ -67,6 +71,16 @@
 				B9A7C8172943E110009758B7 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		B9A7C8202943EC14009758B7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B9A7C8112943E10E009758B7 /* ContentView.swift */,
+				B9A7C81E2943EBA0009758B7 /* ProjectView.swift */,
+				B9A7C8212943EE0A009758B7 /* CreateView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,7 +153,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B9A7C81F2943EBA0009758B7 /* ProjectView.swift in Sources */,
 				B9A7C8122943E10E009758B7 /* ContentView.swift in Sources */,
+				B9A7C8222943EE0A009758B7 /* CreateView.swift in Sources */,
 				B9A7C8102943E10E009758B7 /* Markup_ManagerApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
