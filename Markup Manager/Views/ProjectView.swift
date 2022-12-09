@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ProjectView: View {
     var body: some View {
-        Text("Pick an existing project")
+        Text("Pick a project")
     }
 }
 
