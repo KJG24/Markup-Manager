@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var menu = ["Create a new project", "View an existing project"]
     var body: some View {
         NavigationStack {
             List {

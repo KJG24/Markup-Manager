@@ -9,10 +9,16 @@ import SwiftUI
 
 struct CreateView: View {
     var body: some View {
-        Text("Name a new project")
+        NavigationStack {
+            List {
+                NavigationLink(destination: GetFile()) {
+                    Text("Select a file")
+                        .padding()
+                }
+            }
+        }
     }
 }
-
 struct CreateView_Previews: PreviewProvider {
     static var previews: some View {
         CreateView()
