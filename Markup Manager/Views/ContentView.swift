@@ -12,7 +12,7 @@ struct ContentView: View {
         NavigationStack {
             List {
                 NavigationLink(destination: ProjectView()) {
-                    Text("View existing Projects")
+                    Text("View existing projects")
                         .padding()
                         }
                 NavigationLink(destination: CreateView()) {

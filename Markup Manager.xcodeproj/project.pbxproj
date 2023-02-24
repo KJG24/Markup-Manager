@@ -7,18 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B9484443296E064F00E90175 /* PDFPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9484442296E064F00E90175 /* PDFPicker.swift */; };
 		B9A7C8102943E10E009758B7 /* Markup_ManagerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9A7C80F2943E10E009758B7 /* Markup_ManagerApp.swift */; };
 		B9A7C8122943E10E009758B7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9A7C8112943E10E009758B7 /* ContentView.swift */; };
 		B9A7C8142943E110009758B7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B9A7C8132943E110009758B7 /* Assets.xcassets */; };
 		B9A7C8182943E110009758B7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B9A7C8172943E110009758B7 /* Preview Assets.xcassets */; };
 		B9A7C81F2943EBA0009758B7 /* ProjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9A7C81E2943EBA0009758B7 /* ProjectView.swift */; };
 		B9A7C8222943EE0A009758B7 /* CreateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9A7C8212943EE0A009758B7 /* CreateView.swift */; };
-		B9A7C83F2947DCA3009758B7 /* GetFileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9A7C83E2947DCA3009758B7 /* GetFileView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		B9484442296E064F00E90175 /* PDFPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFPicker.swift; sourceTree = "<group>"; };
 		B9A7C80C2943E10E009758B7 /* Markup Manager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Markup Manager.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9A7C80F2943E10E009758B7 /* Markup_ManagerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Markup_ManagerApp.swift; sourceTree = "<group>"; };
 		B9A7C8112943E10E009758B7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -27,7 +24,6 @@
 		B9A7C8172943E110009758B7 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B9A7C81E2943EBA0009758B7 /* ProjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectView.swift; sourceTree = "<group>"; };
 		B9A7C8212943EE0A009758B7 /* CreateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateView.swift; sourceTree = "<group>"; };
-		B9A7C83E2947DCA3009758B7 /* GetFileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetFileView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,8 +79,6 @@
 				B9A7C8112943E10E009758B7 /* ContentView.swift */,
 				B9A7C81E2943EBA0009758B7 /* ProjectView.swift */,
 				B9A7C8212943EE0A009758B7 /* CreateView.swift */,
-				B9A7C83E2947DCA3009758B7 /* GetFileView.swift */,
-				B9484442296E064F00E90175 /* PDFPicker.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -117,7 +111,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1410;
-				LastUpgradeCheck = 1410;
+				LastUpgradeCheck = 1420;
 				TargetAttributes = {
 					B9A7C80B2943E10E009758B7 = {
 						CreatedOnToolsVersion = 14.1;
@@ -163,8 +157,6 @@
 				B9A7C8122943E10E009758B7 /* ContentView.swift in Sources */,
 				B9A7C8222943EE0A009758B7 /* CreateView.swift in Sources */,
 				B9A7C8102943E10E009758B7 /* Markup_ManagerApp.swift in Sources */,
-				B9484443296E064F00E90175 /* PDFPicker.swift in Sources */,
-				B9A7C83F2947DCA3009758B7 /* GetFileView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -204,6 +196,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -262,6 +255,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -286,8 +280,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Markup Manager/Markup_Manager.entitlements";
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Markup Manager/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -322,8 +318,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Markup Manager/Markup_Manager.entitlements";
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Markup Manager/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
