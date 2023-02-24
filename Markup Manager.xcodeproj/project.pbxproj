@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B9484443296E064F00E90175 /* PDFPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9484442296E064F00E90175 /* PDFPicker.swift */; };
 		B9A7C8102943E10E009758B7 /* Markup_ManagerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9A7C80F2943E10E009758B7 /* Markup_ManagerApp.swift */; };
 		B9A7C8122943E10E009758B7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9A7C8112943E10E009758B7 /* ContentView.swift */; };
 		B9A7C8142943E110009758B7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B9A7C8132943E110009758B7 /* Assets.xcassets */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B9484442296E064F00E90175 /* PDFPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFPicker.swift; sourceTree = "<group>"; };
 		B9A7C80C2943E10E009758B7 /* Markup Manager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Markup Manager.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9A7C80F2943E10E009758B7 /* Markup_ManagerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Markup_ManagerApp.swift; sourceTree = "<group>"; };
 		B9A7C8112943E10E009758B7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -82,6 +84,7 @@
 				B9A7C81E2943EBA0009758B7 /* ProjectView.swift */,
 				B9A7C8212943EE0A009758B7 /* CreateView.swift */,
 				B9A7C83E2947DCA3009758B7 /* GetFileView.swift */,
+				B9484442296E064F00E90175 /* PDFPicker.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -160,6 +163,7 @@
 				B9A7C8122943E10E009758B7 /* ContentView.swift in Sources */,
 				B9A7C8222943EE0A009758B7 /* CreateView.swift in Sources */,
 				B9A7C8102943E10E009758B7 /* Markup_ManagerApp.swift in Sources */,
+				B9484443296E064F00E90175 /* PDFPicker.swift in Sources */,
 				B9A7C83F2947DCA3009758B7 /* GetFileView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

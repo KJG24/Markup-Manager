@@ -10,7 +10,7 @@ import SwiftUI
 
 struct GetFile: View {
         var body: some View {
-        importPDF()
+        Text("Import a PDF here")
     }
 }
 
