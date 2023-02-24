@@ -58,10 +58,25 @@ struct CreateView: View {
 
 struct PDFViewWrapper: UIViewRepresentable {
     let pdfDocument: PDFDocument
+    var onTap: ((CGPoint) -> Void)?
+    var onPinTap: ((CGPoint) -> Void)?
 
     func makeUIView(context: UIViewRepresentableContext<PDFViewWrapper>) -> UIView {
+
         let pdfView = PDFView()
         pdfView.autoScales = true
+        pdfView.isUserInteractionEnabled = true
+        
+        let tapRecognizer = UITapGestureRecognizer(target: context.coordinator, action: #selector(Coordinator.handleTapGesture(_:)))
+        tapRecognizer.numberOfTapsRequired = 2
+        pdfView.addGestureRecognizer(tapRecognizer)
+        
+        let pinTapRecognizer = UITapGestureRecognizer(target: context.coordinator, action: #selector(Coordinator.handlePinTapGesture(_:)))
+        pinTapRecognizer.require(toFail: tapRecognizer)
+        pdfView.addGestureRecognizer(pinTapRecognizer)
+        
+        
+        pdfView.document = pdfDocument
         return pdfView
     }
 
@@ -69,7 +84,47 @@ struct PDFViewWrapper: UIViewRepresentable {
         guard let pdfView = uiView as? PDFView else { return }
         pdfView.document = pdfDocument
     }
+    
+    func makeCoordinator() -> Coordinator {
+        Coordinator(onTap: onTap, onPinTap: onPinTap)
+    }
+    
+    class Coordinator: NSObject {
+        var onTap: ((CGPoint) -> Void)?
+        var onPinTap: ((CGPoint) -> Void)?
+        
+        init(onTap: ((CGPoint) -> Void)?, onPinTap: ((CGPoint) -> Void)?) {
+            self.onTap = onTap
+            self.onPinTap = onPinTap
+        }
+        
+        @objc func handleTapGesture(_ sender: UITapGestureRecognizer) {
+            let tapLocation = sender.location(in: sender.view)
+            onTap?(tapLocation)
+        }
+        
+        @objc func handlePinTapGesture(_ sender: UITapGestureRecognizer) {
+            guard let pdfView = sender.view as? PDFView else { return }
+            let tapLocation = sender.location(in: pdfView)
+            print(tapLocation)
+            
+            // Create a red circle view
+            let markerView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
+            markerView.backgroundColor = .red
+            markerView.layer.cornerRadius = 5
+            
+            // Set the center of the marker view to the tapped location
+            markerView.center = tapLocation
+            
+            // Add the marker view as a subview to the PDF view
+            pdfView.addSubview(markerView)
+            
+            // Call the onPinTap closure with the tapped location
+            onPinTap?(tapLocation)
+        }
+    }
 }
+
 
 struct DocumentPicker: UIViewControllerRepresentable {
     @Binding var selectedDocumentURL: URL?

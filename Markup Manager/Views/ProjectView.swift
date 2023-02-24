@@ -82,7 +82,6 @@ class PDFKitRepresentedView: UIView {
     }
 }
 
-
 struct ProjectView_Previews: PreviewProvider {
     static var previews: some View {
         ProjectView()
