@@ -17,7 +17,7 @@ struct CreateView: View {
     
     var body: some View {
         VStack {
-            TextField("Folder Name", text: $folderName)
+            TextField("Enter your project name:", text: $folderName)
                 .padding()
                 .background(Color(.systemGray6))
                 .cornerRadius(10)
@@ -30,7 +30,7 @@ struct CreateView: View {
                 PDFViewWrapper(pdfDocument: pdfDocument)
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
-            Button("Save PDF") {
+            Button("Save Project") {
                 if let pdfDocument = pdfDocument, let documentURL = selectedDocumentURL {
                     savePDF(pdfDocument, from: documentURL, folderName: folderName)
                 }
