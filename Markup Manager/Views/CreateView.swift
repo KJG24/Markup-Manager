@@ -13,9 +13,16 @@ struct CreateView: View {
     @State var isDocumentPickerShown = false
     @State var selectedDocumentURL: URL?
     @State var pdfDocument: PDFDocument?
+    @State var folderName = ""
     
     var body: some View {
         VStack {
+            TextField("Folder Name", text: $folderName)
+                .padding()
+                .background(Color(.systemGray6))
+                .cornerRadius(10)
+                .padding(.horizontal)
+            
             Button("Select PDF") {
                 isDocumentPickerShown = true
             }
@@ -25,7 +32,7 @@ struct CreateView: View {
             }
             Button("Save PDF") {
                 if let pdfDocument = pdfDocument, let documentURL = selectedDocumentURL {
-                    savePDF(pdfDocument, from: documentURL)
+                    savePDF(pdfDocument, from: documentURL, folderName: folderName)
                 }
             }
         }
@@ -34,10 +41,13 @@ struct CreateView: View {
         }
     }
     
-    private func savePDF(_ pdfDocument: PDFDocument, from documentURL: URL) {
+    private func savePDF(_ pdfDocument: PDFDocument, from documentURL: URL, folderName: String) {
         do {
-            let documentDirectoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-            let destinationURL = documentDirectoryURL.appendingPathComponent(documentURL.lastPathComponent)
+            let fileManager = FileManager.default
+            let documentsDirectory = try fileManager.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
+            let folderURL = documentsDirectory.appendingPathComponent(folderName)
+            try fileManager.createDirectory(at: folderURL, withIntermediateDirectories: true, attributes: nil)
+            let destinationURL = folderURL.appendingPathComponent(documentURL.lastPathComponent)
             try pdfDocument.write(to: destinationURL)
             print("PDF saved successfully at: \(destinationURL.absoluteString)")
         } catch {
