@@ -10,18 +10,26 @@ import PDFKit
 
 struct ProjectView: View {
     let documentsDirectoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-
+    
+    @State private var directories: [URL] = []
+    
     var body: some View {
         NavigationView {
-            List(getDirectories(), id: \.self) { directoryURL in
-                NavigationLink(destination: FolderView(directoryURL: directoryURL)) {
-                    Text(directoryURL.lastPathComponent)
+            List {
+                ForEach(directories, id: \.self) { directoryURL in
+                    NavigationLink(destination: FolderView(directoryURL: directoryURL)) {
+                        Text(directoryURL.lastPathComponent)
+                    }
                 }
+                .onDelete(perform: deleteDirectory)
             }
             .navigationTitle("Projects")
         }
+        .onAppear {
+            directories = getDirectories()
+        }
     }
-
+    
     func getDirectories() -> [URL] {
         do {
             let contents = try FileManager.default.contentsOfDirectory(at: documentsDirectoryURL, includingPropertiesForKeys: nil, options: [.skipsHiddenFiles, .skipsSubdirectoryDescendants])
@@ -35,14 +43,41 @@ struct ProjectView: View {
             return []
         }
     }
+    
+    func deleteDirectory(at offsets: IndexSet) {
+        for offset in offsets {
+            do {
+                try FileManager.default.removeItem(at: directories[offset])
+                directories.remove(at: offset)
+            } catch {
+                print("Error deleting directory: \(error.localizedDescription)")
+            }
+        }
+    }
 }
+
 
 struct FolderView: View {
     let directoryURL: URL
 
     var body: some View {
         List(getPDFFiles(), id: \.self) { pdfFileURL in
-            NavigationLink(destination: PDFViewWrapper(pdfDocument: PDFDocument(url: pdfFileURL)!)) {
+            NavigationLink(destination: PDFViewWrapper(pdfDocument: PDFDocument(url: pdfFileURL)!, onPinTap: { tapLocation in
+                // Create a red circle view
+                let markerView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
+                markerView.backgroundColor = .red
+                markerView.layer.cornerRadius = 5
+                
+                // Set the center of the marker view to the tapped location
+                markerView.center = tapLocation
+                
+                // Add the marker view as a subview to the PDF view
+                if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+                   let pdfView = windowScene.windows.first?.rootViewController?.view.subviews.first(where: { $0 is PDFView }) as? PDFView {
+                    // Do something with pdfView
+                    pdfView.addSubview(markerView)
+                }
+            })) {
                 Text(pdfFileURL.lastPathComponent)
             }
         }
@@ -63,6 +98,7 @@ struct FolderView: View {
 }
 
 
+/*
 class PDFKitRepresentedView: UIView {
     let pdfView: PDFView
 
@@ -87,3 +123,4 @@ struct ProjectView_Previews: PreviewProvider {
         ProjectView()
     }
 }
+*/
