@@ -56,46 +56,62 @@ struct ProjectView: View {
     }
 }
 
-
 struct FolderView: View {
     let directoryURL: URL
+    @State private var pdfFiles: [URL] = []
 
     var body: some View {
-        List(getPDFFiles(), id: \.self) { pdfFileURL in
-            NavigationLink(destination: PDFViewWrapper(pdfDocument: PDFDocument(url: pdfFileURL)!, onPinTap: { tapLocation in
-                // Create a red circle view
-                let markerView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
-                markerView.backgroundColor = .red
-                markerView.layer.cornerRadius = 5
-                
-                // Set the center of the marker view to the tapped location
-                markerView.center = tapLocation
-                
-                // Add the marker view as a subview to the PDF view
-                if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-                   let pdfView = windowScene.windows.first?.rootViewController?.view.subviews.first(where: { $0 is PDFView }) as? PDFView {
-                    // Do something with pdfView
-                    pdfView.addSubview(markerView)
+        List {
+            ForEach(pdfFiles, id: \.self) { pdfFileURL in
+                NavigationLink(destination: PDFViewWrapper(pdfDocument: PDFDocument(url: pdfFileURL)!, onPinTap: { tapLocation in
+                    // Create a red circle view
+                    let markerView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
+                    markerView.backgroundColor = .red
+                    markerView.layer.cornerRadius = 5
+                    
+                    // Set the center of the marker view to the tapped location
+                    markerView.center = tapLocation
+                    
+                    // Add the marker view as a subview to the PDF view
+                    if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+                       let pdfView = windowScene.windows.first?.rootViewController?.view.subviews.first(where: { $0 is PDFView }) as? PDFView {
+                        // Do something with pdfView
+                        pdfView.addSubview(markerView)
+                    }
+                })) {
+                    Text(pdfFileURL.lastPathComponent)
                 }
-            })) {
-                Text(pdfFileURL.lastPathComponent)
             }
+            .onDelete(perform: deletePDFFile)
         }
         .navigationTitle(directoryURL.lastPathComponent)
+        .onAppear(perform: loadPDFFiles)
     }
 
-    func getPDFFiles() -> [URL] {
+    func loadPDFFiles() {
         do {
             let contents = try FileManager.default.contentsOfDirectory(at: directoryURL, includingPropertiesForKeys: nil, options: [.skipsHiddenFiles, .skipsSubdirectoryDescendants])
-            return contents.filter { (url) -> Bool in
+            pdfFiles = contents.filter { (url) -> Bool in
                 return url.pathExtension.lowercased() == "pdf"
             }
         } catch {
             print("Error getting PDF files: \(error.localizedDescription)")
-            return []
+        }
+    }
+
+    func deletePDFFile(at offsets: IndexSet) {
+        for index in offsets {
+            let pdfFileURL = pdfFiles[index]
+            do {
+                try FileManager.default.removeItem(at: pdfFileURL)
+                pdfFiles.remove(at: index)
+            } catch {
+                print("Error deleting PDF file: \(error.localizedDescription)")
+            }
         }
     }
 }
+
 
 
 /*
